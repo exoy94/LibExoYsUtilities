@@ -1,0 +1,8 @@
+## Title: Lib|c00FF00ExoY|rsUtilities
+## APIVersion: 101036
+## Author: @|c00FF00ExoY|r94 (PC/EU)
+## Version: 6
+## AddOnVersion: 6
+## IsLibrary: true
+
+LibExoYsUtilities.lua
