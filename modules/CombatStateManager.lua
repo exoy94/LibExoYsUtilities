@@ -97,4 +97,4 @@ local function Initialize()
   if IsUnitInCombat("player") then OnPlayerCombatState(_, true) end
 end
 
-Lib.init_CombatStateManager = Initialize
+Lib.CombatStateManager_InitFunc = Initialize
