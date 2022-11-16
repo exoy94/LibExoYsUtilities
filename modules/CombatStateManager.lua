@@ -92,7 +92,8 @@ local function OnPlayerCombatState(_, inCombat)
 end
 
 local function Initialize()
-  Lib.EM:RegisterForEvent( Lib.name.."CombatState", EVENT_PLAYER_COMBAT_STATE, OnPlayerCombatState )
+  local EM = GetEventManager()
+  EM:RegisterForEvent( Lib.name.."CombatState", EVENT_PLAYER_COMBAT_STATE, OnPlayerCombatState )
   if IsUnitInCombat("player") then OnPlayerCombatState(_, true) end
 end
 
