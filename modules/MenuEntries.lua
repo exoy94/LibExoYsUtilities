@@ -9,13 +9,13 @@ data =
 }
 ]]
 function Lib.GetGeneralSettingsName()
-  return Lib.AddIconToString(LIB_EXOY_GENERAL_SETTINGS, "esoui/art/icons/achievement_u30_mainquest_2.dds", 36, true)
+  return Lib.AddIconToString(LIB_EXOY_GENERAL_SETTINGS, "esoui/art/icons/achievement_u30_mainquest_2.dds", 36, "front")
 end
 
 function Lib.GetFeedbackSubmenu( data )
   local submenu = {
     type = "submenu",
-    name = Lib.AddIconToString(LIB_EXOY_FEEDBACK_SETTINGS, "esoui/art/icons/achievement_update11_dungeons_004.dds", 36, true),
+    name = Lib.AddIconToString(LIB_EXOY_FEEDBACK_SETTINGS, "esoui/art/icons/achievement_update11_dungeons_004.dds", 36, "front"),
     controls = {},
   }
 
