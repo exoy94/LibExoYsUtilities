@@ -2,32 +2,49 @@ LibExoYsUtilities = LibExoYsUtilities or {}
 local Lib = LibExoYsUtilities
 
 
----------------------
--- AddIconToString --
----------------------
 
--- Utilities/MenuEntrties.lua
+--[[ ---------------------------- ]]
+--[[ -- Formatted Ability Name -- ]]
+--[[ ---------------------------- ]]
 
-function Lib.AddIconToString(str, icon, size, inFront)
-  if type(icon) == "number" then
+function Lib.GetFormattedAbilityName( abilityId )
+  return zo_strformat( SI_ABILITY_NAME, GetAbilityName(abilityId) )
+end
+
+
+
+--[[ ------------------------ ]]
+--[[ -- Add Icon to String -- ]]
+--[[ ------------------------ ]]
+
+-- used in: 
+--    + LibExoYsUtilities/MenuEntrties.lua
+
+function Lib.AddIconToString(str, icon, size, location)
+  if Lib.IsNumber(icon) then
     icon = GetAbilityIcon(icon)
   end
   local iconStr = zo_strformat("|t<<2>>:<<2>>:<<1>>|t", icon, size)
-  if inFront then
+  if location == "front" then 
     return zo_strformat("<<1>> <<2>>", iconStr, str)
-  else
+  elseif location == "back" then 
     return zo_strformat("<<1>> <<2>>", str, iconStr)
   end
 end
 
 
------------------
--- ColorString --
------------------
 
--- Utilities/Debug.lua
+--[[ ------------------ ]]
+--[[ -- Color String -- ]]
+--[[ ------------------ ]]
 
--- Interface/Chat.lua
+--used in: 
+--    + LibExoYsUtilities/Debug.lua
+--    + ExoYsUserInterface/Chat.lua
+
+-- color can be provided as: 
+--    + hexadecimal (string)
+--    + rgb (table)
 
 function Lib.ColorString(str, color)
   local colorString = ""
@@ -40,28 +57,20 @@ function Lib.ColorString(str, color)
 end
 
 
------------------------------
--- GetFormattedAbilityName --
------------------------------
-
-function Lib.GetFormattedAbilityName( abilityId )
-  return zo_strformat( SI_ABILITY_NAME, GetAbilityName(abilityId) )
-end
 
 
-------------------------
--- GetFormattedNumber --
-------------------------
+--[[ ---------------------- ]]
+--[[ -- Formatted Number -- ]]
+--[[ ---------------------- ]]
 
--- Utilities/DistanceCalculator.lua
--- Utilities/StringFormatter.lua
+--used in: 
+--    + LibExoYsUtilities/StringFormatter.lua
 
---[[ format (table)
-        factor, (number)  -- multiply value with factor (default = 1)
-        decimal (number)  -- number of decimal digits (default = 0)
-        prefix (string)   -- string appended in front without space
-        suffix (string)   -- string appended at end without space
-]]
+-- format (table):
+--    + factor, (number)  -- multiply value with factor (default = 1)
+--    + decimal (number)  -- number of decimal digits (default = 0)
+--    + prefix (string)   -- string appended in front without space
+--    + suffix (string)   -- string appended at end without space
 
 function Lib.GetFormattedNumber( value, format )
   format = format or {}
@@ -71,13 +80,13 @@ function Lib.GetFormattedNumber( value, format )
 end
 
 
-------------------------
--- GetCountdownString --
-------------------------
 
--- TributesEnhancement.lua
+--[[ ---------------------- ]]
+--[[ -- Countdown String -- ]]
+--[[ ---------------------- ]]
 
--- TODO add string for end
+-- used in: 
+--    + TributesEnhancement.lua
 
 function Lib.GetCountdownString( value, unit, decimal, notMilliseconds )
   local format = {
@@ -94,11 +103,13 @@ function Lib.GetCountdownString( value, unit, decimal, notMilliseconds )
 end
 
 
--------------------------
--- ComplementWithZeros --
--------------------------
 
--- Utilities/StringFormatter.lua
+--[[ --------------------------- ]]
+--[[ -- Complement with Zeros -- ]]
+--[[ --------------------------- ]]
+
+-- used in: 
+--    + LibExoYsUtilities/StringFormatter.lua
 
 function Lib.ComplementWithZeros( value, digits )
   digits = digits or 0
@@ -107,9 +118,10 @@ function Lib.ComplementWithZeros( value, digits )
 end
 
 
---------------------------
--- GetFormattedCurrency --
---------------------------
+
+--[[ ------------------------ ]]
+--[[ -- Formatted Currency -- ]]
+--[[ ------------------------ ]]
 
 function Lib.GetFormattedCurrency( amount )
   local suffixList = {[3] = "k", [6] = "m"}
@@ -125,9 +137,10 @@ function Lib.GetFormattedCurrency( amount )
 end
 
 
--------------------
--- GetTimeString --
--------------------
+
+--[[ ----------------- ]]
+--[[ -- Time String -- ]]
+--[[ ----------------- ]]
 
 function Lib.GetTimeString( hideSeconds )
   local timeString = GetTimeString()
@@ -140,9 +153,10 @@ function Lib.GetTimeString( hideSeconds )
 end
 
 
----------------------
--- ConvertDuration --
----------------------
+
+--[[ ---------------------- ]]
+--[[ -- Convert Duration -- ]]
+--[[ ---------------------- ]]
 
 -- Utilities/StringFormatter.lua
 
@@ -176,6 +190,7 @@ function Lib.ConvertDuration( duration, notMilliseconds )
 
   return durationTable
 end
+
 
 
 --[[ ------------------------ ]]
