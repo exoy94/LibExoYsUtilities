@@ -1,5 +1,4 @@
 LibExoYsUtilities = LibExoYsUtilities or {}
-
 local Lib = LibExoYsUtilities
 
 function Lib.IsTable( t )
@@ -7,5 +6,13 @@ function Lib.IsTable( t )
 end
 
 function Lib.IsFunc( f )
-    return type(f) == "function"
-  end
+  return type(f) == "function"
+end
+
+function Lib.IsString( s ) 
+  return type(s) == "string"
+end
+
+function Lib.IsNum( n ) 
+  return type(n) == "number"
+end
