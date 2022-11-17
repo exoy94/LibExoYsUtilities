@@ -4,32 +4,32 @@ local Lib = LibExoYsUtilities
 local EM = GetEventManager() 
 
 Lib.name = "LibExoYsUtilities"
+Lib.CM = ZO_CallbackObject:New()
 
 
 --[[ ------------------------------- ]]
 --[[ -- Initial Player Activation -- ]]
 --[[ ------------------------------- ]]
 
-local initialActivationCallbackList = {}
+local initialActivationDone = false
 
 function Lib.RegisterInitialActivationCallback(callback)
-    table.insert(initialActivationCallbackList, callback)
+    if initialActivationDone then return end
+    if not Lib.IsFunc(callback) then return end
+    Lib.CM:RegisterCallback('InitialPlayerActivation', callback)
 end
 
 function OnInitialActivation()
-    for _, callback in ipairs( initialActivationCallbackList ) do
-        if type(callback) == "function" then 
-            callback()
-        end
-    end
+    Lib.CM:FireCallbacks('InitialPlayerActivation')
+    initialActivationDone = true
     EM:UnregisterForEvent(Lib.name.."InitialActivation", EVENT_PLAYER_ACTIVATED)
+    Lib.CM:UnregisterAllCallbacks('InitialPlayerActivation')
 end
 
 
 --[[ -------------------- ]]
 --[[ -- Initialization -- ]]
 --[[ -------------------- ]]
-
 
 local function InitModule(module) 
     local func = Lib[module.."_InitFunc"] or nil 
