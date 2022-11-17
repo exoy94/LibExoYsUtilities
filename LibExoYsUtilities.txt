@@ -8,5 +8,9 @@
 modules/CombatStateManager.lua
 modules/Formatter.lua
 modules/Miscellaneous.lua
+modules/Fonts.lua
+modules/MenuEntries.lua
+modules/Debug.lua
+modules/EventHandler.lua
 
 LibExoYsUtilities.lua
