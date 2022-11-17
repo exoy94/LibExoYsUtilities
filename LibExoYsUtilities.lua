@@ -33,7 +33,7 @@ end
 
 local function InitModule(module) 
     local func = Lib[module.."_InitFunc"] or nil 
-    if type(func) == "function" then 
+    if Lib.IsFunc(func) then 
         func() 
     end
     func = nil 
