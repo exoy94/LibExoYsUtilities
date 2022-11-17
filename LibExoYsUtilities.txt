@@ -6,5 +6,6 @@
 ## IsLibrary: true
 
 modules/CombatStateManager.lua
+modules/Formatter.lua
 
 LibExoYsUtilities.lua
