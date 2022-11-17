@@ -158,15 +158,12 @@ end
 --[[ -- Convert Duration -- ]]
 --[[ ---------------------- ]]
 
--- Utilities/StringFormatter.lua
+-- used in: 
+--    + LibExoYsUtilities/StringFormatter.lua
 
---[[ output(table) =
-      {unit}
-      * amount for respective unit upto to limit
-      raw = {unit}
-      * total amount for respective unit without limit
-]]
-
+-- durationTable ( output )
+--    + "units"       --> value for respective unit
+--    + raw  (table)  --> total value for respective units
 
 function Lib.ConvertDuration( duration, notMilliseconds )
   local factor = notMilliseconds and 1 or 1000
@@ -210,7 +207,6 @@ end
 --      + default           --> hours:minutes:seconds
 --      + 'minute'          --> minutes:seconds
 --      + 'second'          --> seconds
-
 
 function Lib.GetFormattedDuration( duration, mode, specification )
   local function Pluralize(word)
@@ -259,23 +255,9 @@ end
 
 
 
---[[
-function Lib.ConvertDurationToClock( duration, InMilliseconds )
-  local factor = InMilliseconds and 1000 or 1
-  local timeUnits = {
-    ["minutes"] = 60,
-  }
-  local result = {}
-  for unit, ratio in pairs(timeUnits) do
-    local inter = math.floor(duration/(ratio*factor) )
-    result[unit] = inter > ratio and inter%ratio or inter
-  end
-  result.seconds = math.floor((duration/factor)%60)
-  result.milliSeconds = InMilliseconds and duration%1000 or 0
-  return result.minutes, result.seconds, result.milliSeconds
-end
-]]
-
+--[[ ---------------------------- ]]
+--[[ -- Remaining Milliseconds -- ]]
+--[[ ---------------------------- ]]
 
 function Lib.GetRemainingMilliseconds(endTime)
     return zo_max(endTime - GetGameTimeMilliseconds(), 0)
@@ -292,22 +274,3 @@ function Lib.GetRemainingMilliseconds(endTime)
       return string.format( "%.0f", timeRemaining)
     end
   end
-  
-  --[[function Lib.FormatDuration( duration, InMilliseconds)
-      local factor = InMilliseconds and 1000 or 1
-      local timeUnits = {
-          ["days"] = 86400,
-          ["hours"] = 3600,
-          ["minutes"] = 60,
-      }
-      local result = {}
-      for unit, ratio in pairs(timeUnits) do
-          local inter = math.floor(duration/(ratio*factor) )
-          result[unit] = inter > ratio and inter%ratio or inter
-      end
-      result.seconds = math.floor((duration/factor)%60)
-      result.milliSeconds = InMilliseconds and duration%1000 or 0
-    --return result.days, result.hours, result.minutes, result.seconds, result.milliSeconds
-    return result
-  end
-  ]]
