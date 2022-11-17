@@ -5,9 +5,10 @@ local EM = GetEventManager()
 
 Lib.name = "LibExoYsUtilities"
 
--------------------------------
--- Player Initial Activation --
--------------------------------
+
+--[[ ------------------------------- ]]
+--[[ -- Player Initial Activation -- ]]
+--[[ ------------------------------- ]]
 -- executes callbacks for the first "PLAYER_ACTIVATED" event after an reloadui/login
 -- exposed function to allow for other modules/addons to register callbacks
 -- unregister function would be kinda pointless
@@ -28,9 +29,11 @@ function OnInitialActivation()
     EM:UnregisterForEvent(Lib.name.."InitialActivation", EVENT_PLAYER_ACTIVATED)
 end
 
---------------------
--- Initialization --
--------------------- 
+
+--[[ -------------------- ]]
+--[[ -- Initialization -- ]]
+--[[ -------------------- ]]
+
 
 local function InitModule(module) 
     local func = Lib[module.."_InitFunc"] or nil 
