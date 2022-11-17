@@ -178,9 +178,9 @@ function Lib.ConvertDuration( duration, notMilliseconds )
 end
 
 
---[[ ---------------------------- ]]
---[[ -- Get Formatted Duration -- ]]
---[[ ---------------------------- ]]
+--[[ ------------------------ ]]
+--[[ -- Formatted Duration -- ]]
+--[[ ------------------------ ]]
 
 -- Used by: 
 -- TributesEnhancement.lua
@@ -241,3 +241,58 @@ function Lib.GetFormattedDuration( duration, mode, specification )
   end
   return output
 end
+
+
+
+--[[
+function Lib.ConvertDurationToClock( duration, InMilliseconds )
+  local factor = InMilliseconds and 1000 or 1
+  local timeUnits = {
+    ["minutes"] = 60,
+  }
+  local result = {}
+  for unit, ratio in pairs(timeUnits) do
+    local inter = math.floor(duration/(ratio*factor) )
+    result[unit] = inter > ratio and inter%ratio or inter
+  end
+  result.seconds = math.floor((duration/factor)%60)
+  result.milliSeconds = InMilliseconds and duration%1000 or 0
+  return result.minutes, result.seconds, result.milliSeconds
+end
+]]
+
+
+function Lib.GetRemainingMilliseconds(endTime)
+    return zo_max(endTime - GetGameTimeMilliseconds(), 0)
+  end
+  
+  
+  function Lib.GetTimeRemaining( endTime, decimal, final )
+    local timeRemaining = Lib.GetRemainingMilliseconds( endTime )/1000
+    if not decimal then timeRemaining = math.floor(timeRemaining) end
+    if timeRemaining == 0 then return final and final or "0" end
+    if timeRemaining < 10 and decimal then
+      return string.format( "%.1f", timeRemaining)
+    else
+      return string.format( "%.0f", timeRemaining)
+    end
+  end
+  
+  --[[function Lib.FormatDuration( duration, InMilliseconds)
+      local factor = InMilliseconds and 1000 or 1
+      local timeUnits = {
+          ["days"] = 86400,
+          ["hours"] = 3600,
+          ["minutes"] = 60,
+      }
+      local result = {}
+      for unit, ratio in pairs(timeUnits) do
+          local inter = math.floor(duration/(ratio*factor) )
+          result[unit] = inter > ratio and inter%ratio or inter
+      end
+      result.seconds = math.floor((duration/factor)%60)
+      result.milliSeconds = InMilliseconds and duration%1000 or 0
+    --return result.days, result.hours, result.minutes, result.seconds, result.milliSeconds
+    return result
+  end
+  ]]
