@@ -2,33 +2,38 @@ LibExoYsUtilities = LibExoYsUtilities or {}
 
 local Lib = LibExoYsUtilities
 
+--[[ ---------------- ]]
+--[[ -- Chat Debug -- ]]
+--[[ ---------------- ]]
+
+-- used in 
+--    + TributesEnhancement.lua
+
+-- params
+--    + trigger (func or bool)    --> determines whether chat debug is printed
+--    + des     (string)          --> designation of addon
+--    + text    (string or table) --> 
+--    + delim   (table)           --> defines delimiter if 'text' is table 
 
 
---[[
-* var (function or variable) to determine whether debug should be executed
-* des (string) - designation of addon
-]]
-
--- used in TributesEnhancement.lua
-
-function Lib.Debug( var, des, text, delim)
-  if type(var) == "function" then
-    if not var() then
+function Lib.DebugMsg( trigger, des, text, delim)
+  -- early outs
+  if Lib.IsFunc(trigger) then 
+    if not trigger() then
       return
     end
-  elseif not var then
+  elseif not trigger then
     return
   end
+
   local output = zo_strformat("[<<1>>-<<2>>-", Lib.GetTimeString(true), GetGameTimeMilliseconds() )
   output = zo_strformat("<<1>><<2>><<3>> ", Lib.ColorString(output, "8F8F8F"), Lib.ColorString(des,"00FF00"), Lib.ColorString("]","8F8F8F") )
 
   if Lib.IsTable( text ) then
    for k, v in ipairs(text) do
      output = string.format("%s%s", output, v)
-     --output = zo_strformat("<<1>><<2>>", output, v)
      if delim[k] then
        output = string.format("%s%s", output, delim[k])
-       --output = zo_strformat("<<1>><<2>>", output, delim[k] )
      end
    end
    d( output )
