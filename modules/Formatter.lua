@@ -161,17 +161,19 @@ end
 -- used in: 
 --    + LibExoYsUtilities/StringFormatter.lua
 
+-- duration (input) in milliseconds
+
 -- durationTable ( output )
 --    + "units"       --> value for respective unit
 --    + raw  (table)  --> total value for respective units
 
-function Lib.ConvertDuration( duration, notMilliseconds )
-  local factor = notMilliseconds and 1 or 1000
+function Lib.ConvertDuration( duration )
+  local factor = 1000
   local durationTable = { raw = {} }
   local limits = { 60, 60, 24, 7, 52 }
   local units = {"second", "minute", "hour", "day", "week" }
 
-  durationTable.milliseconds = notMilliseconds and 0 or duration%1000
+  durationTable.milliseconds = duration%1000
   durationTable.raw.milliseconds = duration
 
   for i, unit in ipairs( units ) do
