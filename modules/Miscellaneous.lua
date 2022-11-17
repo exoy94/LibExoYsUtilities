@@ -13,6 +13,6 @@ function Lib.IsString( s )
   return type(s) == "string"
 end
 
-function Lib.IsNum( n ) 
+function Lib.IsNumber( n ) 
   return type(n) == "number"
 end
