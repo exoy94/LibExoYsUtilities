@@ -5,6 +5,9 @@
 ## AddOnVersion: 6
 ## IsLibrary: true
 
+languages/en.lua
+languages/$(language).lua
+
 modules/CombatStateManager.lua
 modules/Formatter.lua
 modules/Miscellaneous.lua

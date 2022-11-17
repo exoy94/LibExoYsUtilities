@@ -9,13 +9,13 @@ data =
 }
 ]]
 function Lib.GetGeneralSettingsName()
-  return Lib.AddIconToString(EXOY_UTIL_GENERAL_SETTINGS, "esoui/art/icons/achievement_u30_mainquest_2.dds", 36, true)
+  return Lib.AddIconToString(LIB_EXOY_GENERAL_SETTINGS, "esoui/art/icons/achievement_u30_mainquest_2.dds", 36, true)
 end
 
 function Lib.GetFeedbackSubmenu( data )
   local submenu = {
     type = "submenu",
-    name = Lib.AddIconToString(EXOY_UTIL_FEEDBACK_SETTINGS, "esoui/art/icons/achievement_update11_dungeons_004.dds", 36, true),
+    name = Lib.AddIconToString(LIB_EXOY_FEEDBACK_SETTINGS, "esoui/art/icons/achievement_update11_dungeons_004.dds", 36, true),
     controls = {},
   }
 
@@ -23,12 +23,12 @@ function Lib.GetFeedbackSubmenu( data )
         type = "description",
         --title = "My Title",	--(optional)
         title = nil,	--(optional)
-        text = EXOY_UTIL_FEEDBACK_INGAME_MAIL_DESCRIPTION,
+        text = LIB_EXOY_FEEDBACK_INGAME_MAIL_DESCRIPTION,
         width = "half",
     } )
   table.insert(submenu.controls,   {
         type = "button",
-        name = EXOY_UTIL_FEEDBACK_INGAME_MAIL_BUTTON,
+        name = LIB_EXOY_FEEDBACK_INGAME_MAIL_BUTTON,
         tooltip = "",
         func = function()
               local server = GetWorldName()
@@ -45,7 +45,7 @@ function Lib.GetFeedbackSubmenu( data )
               end
         end,
         width = "half",
-        warning = EXOY_UTIL_FEEDBACK_INGAME_MAIL_WARNING,
+        warning = LIB_EXOY_FEEDBACK_INGAME_MAIL_WARNING,
     } )
 
   table.insert(submenu.controls, { type = "divider" } )
@@ -53,36 +53,36 @@ function Lib.GetFeedbackSubmenu( data )
         type = "description",
         --title = "My Title",	--(optional)
         title = nil,	--(optional)
-        text = EXOY_UTIL_FEEDBACK_ESOUI_DESCRIPTION,
+        text = LIB_EXOY_FEEDBACK_ESOUI_DESCRIPTION,
         width = "half",
     })
   table.insert(submenu.controls,   {
         type = "button",
-        name = EXOY_UTIL_FEEDBACK_ESOUI_BUTTON,
+        name = LIB_EXOY_FEEDBACK_ESOUI_BUTTON,
         tooltip = "",
         func = function()
           RequestOpenUnsafeURL( "https://www.esoui.com/downloads/"..data.esouiSuffix )
         end,
         width = "half",
-        warning = ERG_FEEDBACK_URL_WARNING,
+        warning = LIB_EXOY_FEEDBACK_URL_WARNING,
     } )
   table.insert(submenu.controls, { type = "divider" } )
   table.insert(submenu.controls,   {
         type = "description",
         --title = "My Title",	--(optional)
         title = nil,	--(optional)
-        text = ERG_FEEDBACK_PAYPAL_DESCRIPTION,
+        text = LIB_EXOY_FEEDBACK_PAYPAL_DESCRIPTION,
         width = "half",
     })
   table.insert(submenu.controls,   {
         type = "button",
-        name = EXOY_UTIL_FEEDBACK_PAYPAL_BUTTON,
+        name = LIB_EXOY_FEEDBACK_PAYPAL_BUTTON,
         tooltip = "",
         func = function()
           RequestOpenUnsafeURL( "https://www.paypal.com/paypalme/ExoYGaming" )
         end,
         width = "half",
-        warning = EXOY_UTIL_FEEDBACK_URL_WARNING,
+        warning = LIB_EXOY_FEEDBACK_URL_WARNING,
     })
 
   return submenu
