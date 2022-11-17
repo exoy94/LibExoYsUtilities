@@ -7,5 +7,6 @@
 
 modules/CombatStateManager.lua
 modules/Formatter.lua
+modules/Miscellaneous.lua
 
 LibExoYsUtilities.lua
