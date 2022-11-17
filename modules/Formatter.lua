@@ -164,7 +164,7 @@ end
 -- duration (input) in milliseconds
 
 -- durationTable ( output )
---    + "units"       --> value for respective unit
+--    + each Unit     --> value for respective unit
 --    + raw  (table)  --> total value for respective units
 
 function Lib.ConvertDuration( duration )
@@ -199,10 +199,14 @@ end
 -- Used by: 
 -- TributesEnhancement.lua
 
+-- duration: 
+--      + duration in milliseconds O
+--  or  + durationTable from "Lib.ConvertDuration"
+
 -- mode: (option string):
---       + 'acronym'        --> 1y 2w 3d 4h 5m 6s
---       + 'word'           --> 1year 2weeks 3 days 1hour 2minutes
---       + 'compact'        --> 00:00:00
+--      + 'acronym'        --> 1y 2w 3d 4h 5m 6s
+--      + 'word'           --> 1year 2weeks 3days 1hour 2minutes
+--      + 'compact'        --> 00:00:00
 
 -- specification (option string for compact mode):
 -- output only created for
