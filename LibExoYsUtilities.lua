@@ -7,22 +7,18 @@ Lib.name = "LibExoYsUtilities"
 
 
 --[[ ------------------------------- ]]
---[[ -- Player Initial Activation -- ]]
+--[[ -- Initial Player Activation -- ]]
 --[[ ------------------------------- ]]
--- executes callbacks for the first "PLAYER_ACTIVATED" event after an reloadui/login
--- exposed function to allow for other modules/addons to register callbacks
--- unregister function would be kinda pointless
 
 local initialActivationCallbackList = {}
 
--- exposed function
 function Lib.RegisterInitialActivationCallback(callback)
     table.insert(initialActivationCallbackList, callback)
 end
 
 function OnInitialActivation()
     for _, callback in ipairs( initialActivationCallbackList ) do
-        if type(callback) = "function" then 
+        if type(callback) == "function" then 
             callback()
         end
     end
