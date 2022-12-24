@@ -20,6 +20,7 @@ function Lib.RegisterInitialActivationCallback(callback)
 end
 
 function OnInitialActivation()
+    if initialActivationDone then return end 
     Lib.CM:FireCallbacks('InitialPlayerActivation')
     initialActivationDone = true
     EM:UnregisterForEvent(Lib.name.."InitialActivation", EVENT_PLAYER_ACTIVATED)
@@ -39,10 +40,10 @@ local function InitModule(module)
     func = nil 
 end 
 
+
 local function Initialize()
     
     EM:RegisterForEvent(Lib.name.."InitialActivation", EVENT_PLAYER_ACTIVATED, OnInitialActivation)
-
     InitModule("CombatStateManager")
 
 end
